@@ -26,9 +26,8 @@ function App() {
     deleteTask,
     updateTask
   } = useTasks(user, userRole);
-  
 
-
+  const [filterStatus, setFilterStatus] = useState('all');
 
   return (
     <Authenticator
