@@ -139,7 +139,7 @@ jobs:
           aws-region: eu-west-1
       
       - name: Run Integration Tests
-        if: env.AWS_ACCESS_KEY_ID != ''
+        if: secrets.AWS_ACCESS_KEY_ID != ''
         working-directory: ./lambda
         run: npm run test:integration
         env:
@@ -149,6 +149,7 @@ jobs:
           COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
     
       - name: Health Check
+        if: secrets.API_GATEWAY_URL != ''
         run: |
           response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.API_GATEWAY_URL }}/health)
           if [ $response -eq 200 ]; then
