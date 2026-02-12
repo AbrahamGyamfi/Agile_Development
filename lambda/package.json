@@ -1,0 +1,37 @@
+{
+  "name": "task-management-lambda",
+  "version": "1.0.0",
+  "description": "AWS Lambda functions for Task Management System with role-based access control",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --config jest.config.json",
+    "test:watch": "jest --watch --config jest.config.json",
+    "test:coverage": "jest --coverage --config jest.config.json",
+    "test:integration": "jest --config jest.config.json --testPathPattern=integration",
+    "test:unit": "jest --config jest.config.json --testPathPattern=unit",
+    "lint": "eslint *.js"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "task-management",
+    "cognito",
+    "dynamodb",
+    "ses"
+  ],
+  "author": "Amalitech",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1400.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "axios": "^1.4.0",
+    "@types/jest": "^29.5.0",
+    "eslint": "^8.42.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
