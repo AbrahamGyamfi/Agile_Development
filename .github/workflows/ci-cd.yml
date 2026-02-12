@@ -45,16 +45,6 @@ jobs:
           files: ./Amplify_frontend/frontend/coverage/lcov.info
           flags: frontend
           name: frontend-coverage
-      
-      - name: Build Frontend
-        run: npm run build
-      
-      - name: Archive Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-build
-          path: Amplify_frontend/frontend/build
-          retention-days: 7
 
   # Job 2: Test Lambda Functions
   backend-quality:
