@@ -16,13 +16,13 @@ import { useTasks } from './hooks/useTasks';
 
 function App() {
   const { user, userRole, handleSignOut } = useAuth();
-  const { 
-    tasks, 
-    loading, 
-    error, 
-    setError, 
-    createTask, 
-    updateTaskStatus, 
+  const {
+    tasks,
+    loading,
+    error,
+    setError,
+    createTask,
+    updateTaskStatus,
     deleteTask,
     updateTask
   } = useTasks(user, userRole);
@@ -62,18 +62,18 @@ function App() {
       {({ user }) => (
         <Router>
           <div className="App">
-            <Header 
-              userEmail={user?.attributes?.email} 
-              userRole={userRole} 
-              onSignOut={handleSignOut} 
+            <Header
+              userEmail={user?.attributes?.email}
+              userRole={userRole}
+              onSignOut={handleSignOut}
             />
 
             <main className="main-content">
               <ErrorMessage message={error} onClose={() => setError(null)} />
 
               <Routes>
-                <Route 
-                  path="/" 
+                <Route
+                  path="/"
                   element={
                     userRole === 'admin' ? (
                       <AdminDashboard
@@ -95,10 +95,10 @@ function App() {
                         loading={loading}
                       />
                     )
-                  } 
+                  }
                 />
-                <Route 
-                  path="/create-task" 
+                <Route
+                  path="/create-task"
                   element={
                     userRole === 'admin' ? (
                       <CreateTask
@@ -108,10 +108,10 @@ function App() {
                     ) : (
                       <Navigate to="/" replace />
                     )
-                  } 
+                  }
                 />
-                <Route 
-                  path="/edit-task/:taskId" 
+                <Route
+                  path="/edit-task/:taskId"
                   element={
                     userRole === 'admin' ? (
                       <EditTask
@@ -122,10 +122,10 @@ function App() {
                     ) : (
                       <Navigate to="/" replace />
                     )
-                  } 
+                  }
                 />
-                <Route 
-                  path="/task/:taskId" 
+                <Route
+                  path="/task/:taskId"
                   element={
                     <TaskDetail
                       tasks={tasks}
@@ -134,7 +134,7 @@ function App() {
                       deleteTask={deleteTask}
                       loading={loading}
                     />
-                  } 
+                  }
                 />
               </Routes>
             </main>
@@ -146,3 +146,4 @@ function App() {
 }
 
 export default App;
+
