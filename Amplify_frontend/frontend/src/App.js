@@ -27,14 +27,6 @@ function App() {
     updateTask
   } = useTasks(user, userRole);
   
-  const [newTask, setNewTask] = useState({ 
-    title: '', 
-    description: '', 
-    assignedTo: [], 
-    dueDate: '', 
-    priority: 'medium' 
-  });
-  const [filterStatus, setFilterStatus] = useState('all');
 
 
 
@@ -68,7 +60,7 @@ function App() {
         }
       }}
     >
-      {({ signOut, user }) => (
+      {({ user }) => (
         <Router>
           <div className="App">
             <Header 
