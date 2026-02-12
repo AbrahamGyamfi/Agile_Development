@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Dashboard = ({ tasks }) => {
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter(task => task.status === 'completed').length;
@@ -23,7 +21,7 @@ const Dashboard = ({ tasks }) => {
           <p>Uncompleted</p>
         </div>
       </div>
-      
+
       {totalTasks > 0 && (
         <div className="progress-section">
           <div className="progress-header">
@@ -31,8 +29,8 @@ const Dashboard = ({ tasks }) => {
             <span className="progress-percentage">{completionRate}%</span>
           </div>
           <div className="progress-bar">
-            <div 
-              className="progress-fill" 
+            <div
+              className="progress-fill"
               style={{ width: `${completionRate}%` }}
             />
           </div>

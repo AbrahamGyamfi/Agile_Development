@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Auth } from 'aws-amplify';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const TaskForm = ({ 
-  newTask, 
-  setNewTask, 
-  onSubmit, 
+const TaskForm = ({
+  newTask,
+  setNewTask,
+  onSubmit,
   loading,
   isEdit = false
 }) => {
@@ -37,17 +37,17 @@ const TaskForm = ({
       setLoadingMembers(true);
       const session = await Auth.currentSession();
       const token = session.getIdToken().getJwtToken();
-      
+
       const response = await fetch(`${API_URL}/users`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         // Filter to only show active members (exclude admins)
-        const activeMembers = (data.users || []).filter(user => 
+        const activeMembers = (data.users || []).filter(user =>
           user.status === 'active' && user.role === 'member'
         );
         setMembers(activeMembers);
@@ -68,13 +68,13 @@ const TaskForm = ({
   };
 
   const removeMember = (email) => {
-    setNewTask({ 
-      ...newTask, 
-      assignedTo: newTask.assignedTo.filter(e => e !== email) 
+    setNewTask({
+      ...newTask,
+      assignedTo: newTask.assignedTo.filter(e => e !== email)
     });
   };
 
-  const filteredMembers = members.filter(member => 
+  const filteredMembers = members.filter(member =>
     member.email.toLowerCase().includes(searchTerm.toLowerCase()) &&
     !newTask.assignedTo.includes(member.email)
   );
@@ -96,18 +96,18 @@ const TaskForm = ({
           onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
           required
         />
-        
+
         <div className="assignees-section">
           <label>Assign to Members: *</label>
-          
+
           {/* Selected members tags */}
           {newTask.assignedTo.length > 0 && (
             <div className="selected-members-tags">
               {newTask.assignedTo.map((email) => (
                 <span key={email} className="member-tag">
                   {email}
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     onClick={() => removeMember(email)}
                     className="remove-tag-btn"
                   >
@@ -133,7 +133,7 @@ const TaskForm = ({
               disabled={loadingMembers}
             />
             <span className="dropdown-arrow" onClick={() => !loadingMembers && setShowDropdown(!showDropdown)}>▼</span>
-            
+
             {showDropdown && (
               <div className="dropdown-list">
                 {loadingMembers ? (
@@ -182,8 +182,8 @@ const TaskForm = ({
           </div>
         </div>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={loading || newTask.assignedTo.length === 0}
         >
           {isEdit ? 'Update' : 'Create Task'}

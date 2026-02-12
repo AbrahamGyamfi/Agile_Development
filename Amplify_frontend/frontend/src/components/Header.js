@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Header = ({ userEmail, userRole, onSignOut }) => {
   return (
     <header className="App-header">

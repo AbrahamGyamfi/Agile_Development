@@ -15,17 +15,17 @@ const getAuthToken = async () => {
  */
 export const fetchTasks = async () => {
   const token = await getAuthToken();
-  
+
   const response = await fetch(`${API_URL}/tasks`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
-  
+
   if (!response.ok) {
     throw new Error('Failed to fetch tasks');
   }
-  
+
   const data = await response.json();
   return data.tasks || [];
 };
@@ -35,7 +35,7 @@ export const fetchTasks = async () => {
  */
 export const createTask = async (taskData) => {
   const token = await getAuthToken();
-  
+
   const response = await fetch(`${API_URL}/tasks`, {
     method: 'POST',
     headers: {
@@ -64,7 +64,7 @@ export const createTask = async (taskData) => {
  */
 export const updateTaskStatus = async (taskId, status) => {
   const token = await getAuthToken();
-  
+
   const response = await fetch(`${API_URL}/tasks`, {
     method: 'PUT',
     headers: {
@@ -87,7 +87,7 @@ export const updateTaskStatus = async (taskId, status) => {
  */
 export const deleteTask = async (taskId) => {
   const token = await getAuthToken();
-  
+
   const response = await fetch(`${API_URL}/tasks/${taskId}`, {
     method: 'DELETE',
     headers: {
@@ -108,7 +108,7 @@ export const deleteTask = async (taskId) => {
  */
 export const updateTask = async (taskId, taskData) => {
   const token = await getAuthToken();
-  
+
   const response = await fetch(`${API_URL}/tasks/${taskId}`, {
     method: 'PUT',
     headers: {

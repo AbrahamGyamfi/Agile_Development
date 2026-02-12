@@ -1,14 +1,11 @@
-import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import TaskCard from './TaskCard';
 
-const TaskList = ({ 
-  tasks, 
-  userRole, 
-  filterStatus, 
-  onFilterChange, 
-  onStatusChange, 
-  onDelete, 
-  loading 
+const TaskList = ({
+  tasks,
+  userRole,
+  filterStatus,
+  onFilterChange
 }) => {
   const getFilteredTasks = () => {
     if (filterStatus === 'all') return tasks;
@@ -35,8 +32,8 @@ const TaskList = ({
 
       {filteredTasks.length === 0 ? (
         <div className="no-tasks">
-          {userRole === 'Admin' 
-            ? 'No tasks created yet. Create your first task above!' 
+          {userRole === 'Admin'
+            ? 'No tasks created yet. Create your first task above!'
             : 'No tasks assigned to you yet.'}
         </div>
       ) : (
@@ -45,10 +42,6 @@ const TaskList = ({
             <TaskCard
               key={task.taskId}
               task={task}
-              userRole={userRole}
-              onStatusChange={onStatusChange}
-              onDelete={onDelete}
-              loading={loading}
             />
           ))}
         </div>

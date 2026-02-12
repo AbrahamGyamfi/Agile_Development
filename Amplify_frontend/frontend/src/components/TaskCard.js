@@ -1,17 +1,10 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TaskCard = ({ 
-  task, 
-  userRole, 
-  onStatusChange, 
-  onDelete, 
-  loading 
-}) => {
+const TaskCard = ({ task }) => {
   const navigate = useNavigate();
 
   return (
-    <div 
+    <div
       className={`task-card ${task.status} priority-${task.priority}`}
       onClick={() => navigate(`/task/${task.taskId}`)}
     >
@@ -19,7 +12,7 @@ const TaskCard = ({
         <h3>{task.title}</h3>
         <span className={`priority-badge ${task.priority}`}>{task.priority}</span>
       </div>
-      
+
       <div className="task-simple-meta">
         <div><strong>Status:</strong> {task.status}</div>
         {task.dueDate && (

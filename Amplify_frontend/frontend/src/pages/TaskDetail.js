@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const TaskDetail = ({ tasks, userRole, updateTaskStatus, deleteTask, loading }) => {
@@ -44,15 +43,15 @@ const TaskDetail = ({ tasks, userRole, updateTaskStatus, deleteTask, loading }) 
           </div>
           {userRole === 'admin' && (
             <div className="detail-actions">
-              <button 
-                onClick={() => navigate(`/edit-task/${task.taskId}`)} 
+              <button
+                onClick={() => navigate(`/edit-task/${task.taskId}`)}
                 className="edit-btn"
                 disabled={loading}
               >
                 Edit Task
               </button>
-              <button 
-                onClick={handleDelete} 
+              <button
+                onClick={handleDelete}
                 className="delete-btn"
                 disabled={loading}
               >

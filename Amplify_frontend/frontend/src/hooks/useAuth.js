@@ -9,7 +9,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     checkUser();
-    
+
     // Listen for auth events to update role when user signs in
     const listener = Hub.listen('auth', ({ payload: { event } }) => {
       if (event === 'signIn') {
@@ -18,7 +18,6 @@ export const useAuth = () => {
     });
 
     return () => listener();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const checkUser = async () => {
@@ -26,11 +25,11 @@ export const useAuth = () => {
       setLoading(true);
       const currentUser = await Auth.currentAuthenticatedUser();
       setUser(currentUser);
-      
+
       // Get user's Cognito groups from JWT token (most reliable method)
       const session = await Auth.currentSession();
       const groups = session.getIdToken().payload['cognito:groups'] || [];
-      
+
       // Check if user is in admin group (groups are lowercase: 'admin', 'member')
       if (groups.includes('admin')) {
         setUserRole('admin');
@@ -49,7 +48,7 @@ export const useAuth = () => {
           console.log('User role set to: member (default)');
         }
       }
-      
+
       return currentUser;
     } catch (error) {
       console.log('No user signed in');

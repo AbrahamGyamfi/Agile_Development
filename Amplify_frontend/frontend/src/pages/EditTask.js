@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import TaskForm from '../components/TaskForm';
 
 const EditTask = ({ tasks, updateTask, loading }) => {
   const navigate = useNavigate();
   const { taskId } = useParams();
   const task = tasks.find(t => t.taskId === taskId);
-  
-  const [editTask, setEditTask] = useState({ 
-    title: '', 
-    description: '', 
-    assignedTo: [], 
-    dueDate: '', 
-    priority: 'medium' 
+
+  const [editTask, setEditTask] = useState({
+    title: '',
+    description: '',
+    assignedTo: [],
+    dueDate: '',
+    priority: 'medium'
   });
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const EditTask = ({ tasks, updateTask, loading }) => {
         </button>
         <h1>Update Task</h1>
       </div>
-      
+
       <TaskForm
         newTask={editTask}
         setNewTask={setEditTask}

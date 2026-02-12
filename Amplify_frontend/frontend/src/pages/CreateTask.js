@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import TaskForm from '../components/TaskForm';
 
 const CreateTask = ({ createTask, loading }) => {
   const navigate = useNavigate();
-  const [newTask, setNewTask] = useState({ 
-    title: '', 
-    description: '', 
-    assignedTo: [], 
-    dueDate: '', 
-    priority: 'medium' 
+  const [newTask, setNewTask] = useState({
+    title: '',
+    description: '',
+    assignedTo: [],
+    dueDate: '',
+    priority: 'medium'
   });
 
   const handleCreateTask = async (e) => {
@@ -28,7 +29,7 @@ const CreateTask = ({ createTask, loading }) => {
         </button>
         <h1>Create New Task</h1>
       </div>
-      
+
       <TaskForm
         newTask={newTask}
         setNewTask={setNewTask}

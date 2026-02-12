@@ -10,7 +10,6 @@ export const useTasks = (user, userRole) => {
     if (user) {
       fetchTasks();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const fetchTasks = async () => {
@@ -18,11 +17,11 @@ export const useTasks = (user, userRole) => {
       setLoading(true);
       setError(null);
       const fetchedTasks = await taskService.fetchTasks();
-      
+
       // Filter tasks for members - show only assigned tasks
       if (userRole === 'member' && user) {
         const userEmail = user.attributes?.email;
-        const filtered = fetchedTasks.filter(task => 
+        const filtered = fetchedTasks.filter(task =>
           task.assignedMembers?.includes(userEmail)
         );
         setTasks(filtered);
